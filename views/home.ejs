@@ -29,30 +29,47 @@
   }
 
 </style>
+
+<style>
+    @keyframes animatedBackground {
+        0% {
+            background-position: right;
+        }
+        100% {
+            background-position: 96% ;
+        }
+    }
+
+    .row {
+        animation: animatedBackground 5s infinite alternate; /* Adjust timing and animation type as needed */
+    }
+</style>
+
 <body>
     <%- include('./partials/navbar.ejs') %>
     <div class="container-fluid">
-        <div class="row vh-100 " style="background: url('test.png') ,linear-gradient(to top , rgb(255, 255, 255) 0% ,#ffffff 100% ); background-size: contain ;  background-position: right; background-repeat: no-repeat; ">
+        <div class="row vh-100 " style="background: url('test.png'),linear-gradient(to top , rgb(255, 255, 255) 0% ,#ffffff 100% ) ; background-size: contain ;  background-position: right; background-repeat: no-repeat; ">
+
             <div class="col-md-6 mt-md-auto mx-0 mx-md-5  ">
                
-              
-                    <div class=" d-flex  m-2 flex-column  ">
-                        <h1 class="text-danger heading2 me-2" ; >SANDEEP'S</h1>
-                        <h1 class="text-muted heading2"  >Fitness World</h1>
-                   
-                    </div>
+         
+                <div class=" d-flex  m-2 flex-column  " style="">
     
-                    <h2 class="text-dark ms-2" style="font-family: 'Dancing Script', cursive;" >Success.... Nothing Less</h2>
-    
-    
-    
-            
-               
-                  
-               
+                    <h1 class="text-danger heading2 me-2" ; >SANDEEP'S</h1>
+                    <h1 class="text-muted heading2"  >Fitness World</h1>
+                
+                </div>
 
+                <h2 class="text-dark ms-2" style="font-family: 'Dancing Script', cursive;" >Success.... Nothing Less</h2>
+
+    
+              
               
             </div>
+
+
+
+
             <div class="col-md-6 mt-auto mt-md-0 mb-md-auto ms-0 ms-md-5  ">
                 
                 <div class="m-2  branch  " style="border-bottom: 3px rgb(138, 138, 138) solid; max-width: 200px;" >
