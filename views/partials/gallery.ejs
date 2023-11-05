@@ -8,11 +8,11 @@
 
 
 
-  <div id="imageCarousel" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
+  <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner" data-bs-interval="5000">
       <% for (let i = 0; i < images.length; i += 2) { %>
         <% if (images[i].name === 'gallery' && images[i + 1] && images[i + 1].name === 'gallery') { %>
-          <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+          <div class="carousel-item <%= i === 0 ? 'active' : '' %>  " >
             <div class="row">
               <div class="col-md-6">
                 <img class="d-block w-100" src="data:image/webp;base64,<%= images[i].image.toString('base64') %>" alt="First slide">
@@ -25,16 +25,15 @@
         <% } %>
       <% } %>
     </div>
-    <a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#imageCarousel" role="button" data-slide="next">
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
   
-
 
 </div>
