@@ -17,10 +17,19 @@
       </div>
 
     </div>
-    <div class="col-md-6 " style="background: url('bg.jpg') no-repeat; background-size: cover ; height: 50vh;">
-    </div>
-    <div class="col-md-6 " style="background: url('bg2.jpg') no-repeat; background-size: cover ; height: 50vh;">
-    </div>
-    <div class="col-md-6 " style="background: url('bg3.jpg') no-repeat; background-size: cover ; height: 50vh;">
-    </div>
+    <% images.forEach(element => { %>
+
+
+      <% if (element.name==="gallery") { %>
+        <div class="col-md-6 " style=" height: 50vh;">
+          <img style="object-fit: scale-down; width: 100%; max-width: 300px;" src="data:image/webpg;base64,<%= element.image.toString('base64') %>" alt="Image">
+  
+        </div>
+  
+      <% } %>
+
+
+    <% }) %>
+
+   
   </div>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Image Upload Form</title>
@@ -7,19 +8,74 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
+
 <body>
 
-<div class="container mt-5">
-  <form action="/image" method="post" enctype="multipart/form-data">
+  <div class="container mt-5">
+    <div class="row mb-3" style="">
+      <form action="/image" method="post" enctype="multipart/form-data">
 
-      <input type="file" class=""  id="images"  name="images" multiple >
+        <select class="form-select" name="tab" aria-label="Default select example" required>
+          <option selected>Open this select menu</option>
+          <option value="gallery">Gallery</option>
+          <option value="transformation">Transformation</option>
+
+        </select>
 
 
-    <button type="submit" class="btn btn-primary">Upload</button>
-  </form>
-</div>
+        <input type="file" class="" id="images" name="images" multiple>
 
-<!-- Bootstrap JS and Popper.js -->
+
+        <button type="submit" class="btn btn-primary ">Upload</button>
+      </form>
+    </div>
+
+
+    <h1 class="text-center">GALLERY</h1>
+    <div class="row my-3" style=" ">
+      <% images.forEach(element => { %>
+      <% if (element.name==='gallery') { %>
+
+      <div class="col">
+        <img style="object-fit: scale-down; width: 100%; max-width: 150px;" src="data:image/webpg;base64,<%= element.image.toString('base64') %>" alt="Image">
+        <a href="/<%= element.id %>" class="btn btn-dark text-center">DELETE</a>
+      </div>
+
+      <% } %>
+
+
+
+      <% }) %>
+
+
+
+    </div>
+
+
+    <h1>transformation</h1>
+    <div class="row">
+      <% images.forEach(element => { %>
+      <% if (element.name==='transformation') { %>
+
+      <div class="col">
+        <img style="object-fit: scale-down; width: 100%; max-width: 150px;" src="data:image/webpg;base64,<%= element.image.toString('base64') %>" alt="Image">
+        <a href="/<%= element.id %>" class="btn btn-dark text-center">DELETE</a>
+      </div>
+
+      <% } %>
+
+
+
+      <% }) %>
+
+    </div>
+
+
+
+  </div>
+
+  <!-- Bootstrap JS and Popper.js -->
 
 </body>
+
 </html>

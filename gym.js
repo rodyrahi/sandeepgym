@@ -25,11 +25,24 @@ app.get('/', (req, res) => {
 })
 
 app.get('/9171441509', (req,res) => {
-res.render('admin')
+  const images = imagedb.prepare(`SELECT * FROM imagedb`).all();
+res.render('admin', {images})
+} )
+
+app.get('/:id', (req,res) => {
+
+  const id = req.params.id
+
+  console.log(id);
+  imagedb.prepare(`DELETE FROM imagedb WHERE id=?`).run(id);
+  const images = imagedb.prepare(`SELECT * FROM imagedb`).all();
+res.render('admin', {images})
 } )
 
 app.post("/image", upload.array("images", 5), async (req, res) => {
 
+
+  const tab = req.body.tab
   const images = await Promise.map(
     req.files || [],
     async (file) => {
@@ -51,7 +64,7 @@ app.post("/image", upload.array("images", 5), async (req, res) => {
 
   for (const imageBuffer of images) {
     try{
-      imagedb.prepare('INSERT INTO imagedb (name,image) VALUES (?,?)').run('gallery',imageBuffer);
+      imagedb.prepare('INSERT INTO imagedb (name,image) VALUES (?,?)').run(tab,imageBuffer);
 
 
     }catch(error){
@@ -61,7 +74,7 @@ app.post("/image", upload.array("images", 5), async (req, res) => {
   }
 
 
-  res.render("admin");
+  res.redirect("/9171441509");
 });
 
 
