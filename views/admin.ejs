@@ -5,40 +5,53 @@
   <meta charset="UTF-8">
   <title>Image Upload Form</title>
   <!-- Bootstrap CSS -->
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
 <body>
 
-  <div class="container mt-5">
+  
+
+  <div class="container mt-3">
+
+    <h1 class="text-center mb-3">Sandeep Fitness Admin</h1>
+
+    
     <div class="row mb-3" style="">
       <form action="/image" method="post" enctype="multipart/form-data">
+        <div class="mb-2">
+          <select class="form-select" name="tab" aria-label="Default select example" required>
+            <option selected>Open this select menu</option>
+            <option value="gallery">Gallery</option>
+            <option value="transformation">Transformation</option>
+          </select>
+        </div>
 
-        <select class="form-select" name="tab" aria-label="Default select example" required>
-          <option selected>Open this select menu</option>
-          <option value="gallery">Gallery</option>
-          <option value="transformation">Transformation</option>
+        <div class="mb-2">
+          <input type="file" class="form-control" id="images" name="images" multiple>
 
-        </select>
-
-
-        <input type="file" class="" id="images" name="images" multiple>
-
-
-        <button type="submit" class="btn btn-primary ">Upload</button>
+        </div>
+        <button type="submit" class="btn btn-primary  ">Upload</button>
       </form>
     </div>
 
 
-    <h1 class="text-center">GALLERY</h1>
+
+    <h3 class="text-start">GALLERY</h3>
     <div class="row my-3" style=" ">
       <% images.forEach(element => { %>
       <% if (element.name==='gallery') { %>
 
-      <div class="col">
-        <img style="object-fit: scale-down; width: 100%; max-width: 150px;" src="data:image/webpg;base64,<%= element.image.toString('base64') %>" alt="Image">
-        <a href="/<%= element.id %>" class="btn btn-dark text-center">DELETE</a>
+      <div class="col border">
+        <div class="mb-2 ">
+          <img style="object-fit: scale-down; width: 100%; max-width: 120px;" src="data:image/webpg;base64,<%= element.image.toString('base64') %>" alt="Image">
+
+        </div>
+        
+        <div class="mb-2">
+          <a href="/<%= element.id %>" class="btn btn-dark ">DELETE</a>
+
+        </div>
       </div>
 
       <% } %>
@@ -52,8 +65,9 @@
     </div>
 
 
-    <h1>transformation</h1>
+    
     <div class="row">
+      <h3 class="text-start">TRANSFORMATION
       <% images.forEach(element => { %>
       <% if (element.name==='transformation') { %>
 
@@ -69,12 +83,47 @@
       <% }) %>
 
     </div>
+    <hr>
+    <h2 class="text-center">Add Location</h2>
+    <div class="row ">
+      <div class="col text-center my-3">
+        <form action="/addbranch " method="post">
+          <div class="mb-2">
+            <input name="name" class="form-control mb-2" placeholder="LOCATION" type="text">
+            <input name="url" class="form-control mb-2" placeholder="Url" type="text">
+          </div>
+
+          <div class="mb-2 text-start">
+            <button class="btn btn-primary" type="submit">Add</button>
+
+          </div>
+        </form>
+      </div>
+
+
+    </div>
+    <div class="row ">
+      <% branch.forEach(element => { %>
+        <div class="col border">
+          <p class="m-0"><%= element.name %></p>
+
+          <p class="m-0"><%= element.url %></p>
+          <div class="mb-2 ">
+            <a href="/deletebranch/<%= element.id %>" class="btn btn-dark m-3">DELETE</a>
+  
+          </div>
+        </div>
+     
+      <% }) %>
+    </div>
 
 
 
   </div>
 
-  <!-- Bootstrap JS and Popper.js -->
+
+
+
 
 </body>
 

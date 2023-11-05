@@ -10,8 +10,17 @@ imagedb.exec(`
     image BLOB,
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
   )
-`);
-
+`
+);
+imagedb.exec(`
+  CREATE TABLE IF NOT EXISTS branchdb (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    url TEXT,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+  )
+`
+);
 // scriptsdb.exec(`
 //   CREATE TABLE IF NOT EXISTS scripts (
 //     id INTEGER PRIMARY KEY AUTOINCREMENT,
