@@ -6,6 +6,7 @@ const { imagedb } = require("./db");
 const multer = require('multer');
 const sharp = require('sharp');
 const Promise = require('bluebird'); 
+const nodemailer = require('nodemailer');
 
 
 
@@ -20,7 +21,7 @@ const upload = multer({ storage: storage });
 
 app.get('/', (req, res) => {
   const images = imagedb.prepare(`SELECT * FROM imagedb`).all();
-  console.log(images);
+  // console.log(images);
   res.render('home' , {images})
 })
 
@@ -76,6 +77,45 @@ app.post("/image", upload.array("images", 5), async (req, res) => {
 
   res.redirect("/9171441509");
 });
+
+app.post("/contactus", (req, res) => {
+
+  const{name,subject,message , number}=req.body    
+  
+    // Your code to process the contact form data
+  
+    // Configuring nodemailer - Update this with your email provider settings
+    const transporter = nodemailer.createTransport({
+      service: 'gmail', // e.g., 'Gmail', 'Outlook', etc.
+      auth: {
+        user: 'kamingoconsultancy@gmail.com', // Your email address
+        pass: 'tvdvqzxhvykduptj' // Your email password or generated app password
+      }
+    });
+
+    const mailOptions = {
+      from: 'kamingoconsultancy@gmail.com', // Sender email
+      to: 'rajvendrarahi126@gmail.com', // Recipient email
+      subject: subject,
+      text: `Name: ${name}\nNumber: ${number}\nMessage: ${message}`
+    };
+  
+    // Sending the email
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        // Handle error or display a message to the user
+      } else {
+        console.log('Email sent: ' + info.response);
+        // Redirect or display a success message to the user
+      }
+    });
+
+
+res.redirect('/')
+}
+)
+
 
 
 
