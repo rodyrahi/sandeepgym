@@ -39,9 +39,18 @@
             background-position: 96% ;
         }
     }
+    /* @keyframes animatedBackgroundsize {
+        0% {
+            background-size: contain;
+        }
+        100% {
+            background-size: contain ;
+        }
+    } */
 
     .row {
         animation: animatedBackground 4s infinite alternate; /* Adjust timing and animation type as needed */
+        /* animation: animatedBackgroundsize 1s infinite alternate;  */
     }
 </style>
 
@@ -100,7 +109,7 @@
             
         </div>
         <%- include('./partials/gallery.ejs') %>
- <%- include('./partials/aboutus.ejs') %>
+ <%- include('./partials/contactus.ejs') %>
 
     </div>
  <%- include('./partials/footer.ejs') %>
