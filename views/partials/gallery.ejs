@@ -6,7 +6,7 @@
 
 <div class="row  m-md-2  " style="">
 
-  <h1 class="mb-2 text-center fw-bold " style="font-size: 3rem;" >Gallery</h1>
+  <h1 class="mb-2 text-center  " style="font-size: 3rem;" >Gallery</h1>
 
 
   <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -15,10 +15,10 @@
         <% if (images[i].name === 'gallery' && images[i + 1] && images[i + 1].name === 'gallery') { %>
           <div class="carousel-item <%= i === 0 ? 'active' : '' %>  " >
             <div class="row">
-              <div class="col-6">
+              <div class="col-md-6">
                 <img class="d-block w-100" src="data:image/webp;base64,<%= images[i].image.toString('base64') %>" alt="First slide">
               </div>
-              <div class="col-6">
+              <div class="col-md-6">
                 <img class="d-block w-100" src="data:image/webp;base64,<%= images[i + 1].image.toString('base64') %>" alt="Second slide">
               </div>
             </div>
